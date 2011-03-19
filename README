@@ -1,5 +1,7 @@
-#
-pt: baseconf,              // custom map options object
+ defaults = {
+
+            elements: '#list .maplocation', //links selector
+            map_opt: baseconf,              // custom map options object
             clat: 41.895466,                // set the lat default map center
             clng: 12.482324,                // set the lng default map center
             mapstyle_name: '',              // custom map style label and id
