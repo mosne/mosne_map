@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title>MOSNE MAP / jQuery Plugins / markerClusterer + Geocoder + styled Google Maps API v3</title>
+  <title>MOSNE MAP / jQuery Plugin / markerClusterer + Geocoder + styled Google Maps API v3</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -15,7 +15,7 @@
 
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="css/style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=2">
   <script src="js/libs/modernizr-1.7.min.js"></script>
 
 </head>
@@ -25,7 +25,7 @@
   <div id="container">
     <header>
     
-    <h1>MOSNE MAP / jQuery Plugins</h1>
+    <h1>MOSNE MAP / jQuery Plugin</h1>
     <h3>markerClusterer + Geocoder + Styled Google Maps API v3</h3> 
       <nav>
         <ul>
@@ -62,10 +62,10 @@
 &lt;script src=&quot;//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot; src=&quot;http://maps.google.com/maps/api/js?sensor=true&amp;key=&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot; src=&quot;MarkerClusterer.js&quot;&gt;&lt;/script&gt;
-&lt;!-- for LARGE markers array - use lat lng direct input --&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.mosne.map.js&quot;&gt;&lt;/script&gt;
-&lt;!-- for SMALL markers array - use plain text address input --&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.mosne.map.address.js&quot;&gt;&lt;/script&gt;</pre>
+&lt;!-- mode 'latlng'  for LARGE markers array - use lat lng direct input --&gt;
+&lt;!-- mode 'address' for SMALL markers array - use plain text address input --&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.mosne.map.js&quot;&gt;&lt;/script&gt;</pre>
+
       </div>
       
     </section>  
@@ -381,7 +381,7 @@ $("#map_2").mosne_map({
    &lt;/div&gt;
 &lt;/div&gt;</pre>
       
-      <pre class="js"> $("#map_3").mosne_map_address({elements:'#map_3_list .maplocation'});</pre>
+      <pre class="js"> $("#map_3").mosne_map({mode:'address',elements:'#map_3_list .maplocation'});</pre>
       </div>
       
     </div>
@@ -470,28 +470,26 @@ $("#map_2").mosne_map({
       <div class="code">
       <pre class="js">
 defaults = {
-   
-    elements: '#pool .maplocation',  //links selector
-    map_opt: {}                      // custom map options object
-    clat: 41.895466,                 // set the lat default map center
-    clng: 12.482324,                 // set the lng default map center
-    
-    mapstyle_name: '',               // custom map style label and id
-    mapstyle: '',                    // mapstyle object
-    cluster_styles: {},              // custom cluster icons object
-    marker_icon: '',                 // custom marker icon url
-    
-    infobox: true,                   // shows infoWindows grabing html from the .infobox element
-    trigger: 'map_open',             // you can set a event trigger for each link/marker
-    clickedzoom: 15,                 // set the zoom level when you click the single marker
-    timeout: 100,                    // delay between click and zoom on the single marker
-   
-    showzoom: false,                 //bind current map zoom level event
-    before: function () {},          // before create map callback
-    after: function () {},           // after create map callback 
-    afterUpdate: function () {},     // after update map callback
-    };
-    </pre>
+
+            elements: '#list .maplocation', // links selector
+            map_opt: baseconf,              // custom map options object
+            clat: 41.895466,                // set the lat default map center
+            clng: 12.482324,                // set the lng default map center
+            mapstyle_name: '',              // custom map style label and id
+            mapstyle: '',                   // mapstyle object
+            cluster_styles: {},             // custom cluster icons object
+            marker_icon: '',                // custom marker icon url
+            infobox: true,                  // shows infoWindows grabing html from the .infobox element
+            trigger: 'map_open',            // you can set a event trigger for each link/marker
+            clickedzoom: 15,                // set the zoom level when you click the single marker
+            timeout: 100,                   // delay between click and zoom on the single marker
+            mode: 'latlng',                 // switch mode
+            wait: 500,                      // timeout between geocode requests
+            showzoom: false,                // bind current map zoom level event
+            before: function () {},         // before create map callback
+            after: function () {},          // after create map callback 
+            afterUpdate: function () {},    // after update map callback
+        };</pre>
       </div>
       
     </section>  
@@ -503,7 +501,6 @@ defaults = {
     <ul>
       <li>this project is under <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a></li>
       <li><a href="jquery.mosne.map.js">jquery.mosne.map.js</a></li>
-      <li><a href="jquery.mosne.map.address.js">jquery.mosne.map.address.js</a></li>
       <li><a href="https://github.com/mosne/mosne_map">this site on github</a></li>
     </ul>
     </section>  
@@ -540,7 +537,6 @@ defaults = {
   <!-- scripts concatenated and minified via ant build script-->
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&key=ABQIAAAARR0HQxACUc8T7no6lwNbcRRSiXwM92cUDm23D7Ry7WdvUOfXWxRqPjl2PGjDH85KKQEz-_7rsSWQCA"></script>
     <script type="text/javascript" src="MarkerClusterer.js"></script>
-    <script type="text/javascript" src="jquery.mosne.map.address.js"></script>
     <script type="text/javascript" src="jquery.mosne.map.js"></script>
     <script type="text/javascript" src="plugins.js"></script>
     <script type="text/javascript" src="effects.js"></script>
