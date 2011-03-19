@@ -36,6 +36,10 @@
         <li><a href="#tools">Tools</a></li>
         <li><a href="#thanks">Thanks</a></li>
         <li><a href="http://plugins.jquery.com/project/mosne_map">jQuery plugins project page</a></li>
+        <li><a href="https://github.com/mosne/mosne_map">Github project page</a></li>
+        <li><a href="https://github.com/mosne/mosne_map/pulls">Requests</a></li>
+        <li><a href="https://github.com/mosne/mosne_map/issues">Issues</a></li>
+        <li><a href="https://github.com/mosne/mosne_map/fork">Fork</a></li>
       </ul>
       </nav>
       
@@ -500,6 +504,7 @@ defaults = {
       <li>this project is under <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a></li>
       <li><a href="jquery.mosne.map.js">jquery.mosne.map.js</a></li>
       <li><a href="jquery.mosne.map.address.js">jquery.mosne.map.address.js</a></li>
+      <li><a href="https://github.com/mosne/mosne_map">this site on github</a></li>
     </ul>
     </section>  
     
