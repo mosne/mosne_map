@@ -1,0 +1,19 @@
+#
+pt: baseconf,              // custom map options object
+            clat: 41.895466,                // set the lat default map center
+            clng: 12.482324,                // set the lng default map center
+            mapstyle_name: '',              // custom map style label and id
+            mapstyle: '',                   // mapstyle object
+            cluster_styles: {},             // custom cluster icons object
+            marker_icon: '',                // custom marker icon url
+            infobox: true,                  // shows infoWindows grabing html from the .infobox element
+            trigger: 'map_open',            // you can set a event trigger for each link/marker
+            clickedzoom: 15,                // set the zoom level when you click the single marker
+            timeout: 100,                   // delay between click and zoom on the single marker
+            mode: 'latlng',                 // switch mode
+            wait: 500,                      // timeout between geocode requests
+            showzoom: false,                // bind current map zoom level event
+            before: function () {},         // before create map callback
+            after: function () {},          // after create map callback 
+            afterUpdate: function () {},    // after update map callback
+        };
