@@ -51,8 +51,8 @@
 
             //init map
             var center = new google.maps.LatLng(settings.clat, settings.clng);
-            var bounds = new google.maps.LatLngBounds();
             var map = new google.maps.Map(the_map_el, settings.map_opt);
+            var bounds = new google.maps.LatLngBounds();
             var markerCluster = new MarkerClusterer(map, null, settings.cluster_styles);
             map.setCenter(center);
 
@@ -95,7 +95,7 @@
                         if (settings.infobox) {
                             var content = el.find('.infobox').html();
                         }
-
+                      
                         google.maps.event.addListener(marker, 'click', function () {
 
                             if (settings.infobox) {
@@ -105,6 +105,7 @@
                             }
 
                             el.trigger(settings.trigger);
+                            console.log(1);
 
                             $(el).parents().find('.active').removeClass('active');
                             $(el).addClass('active');
@@ -119,9 +120,10 @@
                         });
 
                         // trigger click on list 
-                        $(el).find('.maplink').bind("click", function (e) {
+                        $(el).find('.maplink').unbind("click").bind("click", function (e) {
                             e.preventDefault();
                             google.maps.event.trigger(marker, "click");
+                            return false;
                         });
 
                         markerCluster.addMarker(marker);
@@ -131,8 +133,11 @@
 
             $(map_el).bind('update', function () {
 
+                //reset cluster and bounds
                 markerCluster.clearMarkers();
-
+                bounds = null;
+                bounds = new google.maps.LatLngBounds();
+                
                 // markers loop     
                 var markers = [];
                 var w_delay = 0;
