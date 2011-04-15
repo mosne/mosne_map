@@ -171,7 +171,8 @@ $(function () {
 
 
 
-    $("#map_3").mosne_map_address({
+    $("#map_3").mosne_map({
+        mode: 'address',
         elements: '#map_3_list .maplocation'
     });
 
@@ -179,26 +180,25 @@ $(function () {
         $("#zoom").html(zoom);
     });
 
-    $("#map_4_list .maplocation").bind('aj_open', function () {
-
-        alert("call ajax!");
-
+    $("#map_4_list .maplocation").bind('aj_open', function (e) {
+        $(this).append('<div class="pd">do something fun!</div>');
+        return false;
     });
 
-    $("#reset").click(function () {
+    $("#reset").click(function (e) {
+        e.preventDefault();
         $("#map_4").trigger("bounds");
     });
 
-
-
-    $("#up").click(function () {
+    $("#up").click(function (e) {
+        e.preventDefault();
         $("#map_4_list .maplocation:odd").remove();
         $("#map_4").trigger("update");
     });
 
     var counter = function () {
 
-        tot_p = $("#map_4 .maplocation").length;
+        tot_p = $("#map_4_list .maplocation").length;
         $("#tot").html(tot_p);
     }
 
@@ -209,7 +209,8 @@ $(function () {
         clickedzoom: 14,
         afterUpdate: counter
     });
-
+    
+   
     //snipet
     $("pre.js").snippet("javascript", {
         style: "whitengrey",

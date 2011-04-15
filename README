@@ -17,5 +17,5 @@
             showzoom: false,                // bind current map zoom level event
             before: function () {},         // before create map callback
             after: function () {},          // after create map callback 
-            afterUpdate: function () {},    // after update map callback
+            afterUpdate: function () {}     // after update map callback
         };

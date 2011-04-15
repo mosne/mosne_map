@@ -24,15 +24,24 @@
 
   <div id="container">
     <header>
-    
+    <?
+    echo $bc = '<nav class="bc">
+    <ul>
+     <li><a href="http://www.mosne.it/">Mosne / Graphic & Web design</a></li>
+     <li><a href="http://www.mosne.it/playground/">Playground</a></li>
+     <li><a href="http://www.mosne.it/community/eureka/">Eureka Community</a></li>
+    </ul>';
+    ?> 
     <h1>MOSNE MAP / jQuery Plugin</h1>
     <h3>markerClusterer + Geocoder + Styled Google Maps API v3</h3> 
+    <a id="down" href="#downloads">&#9660; Download</a>
+<? echo $nav =' 
       <nav>
         <ul>
         <li><a href="#setup">Setup</a></li>
         <li><a href="#demos">Demos</a></li>
         <li><a href="#options">Options</a></li>
-        <li><a href="#downloads">Downloads</a></li>
+        <li><a href="#downloads">Download</a></li>
         <li><a href="#tools">Tools</a></li>
         <li><a href="#thanks">Thanks</a></li>
         <li><a href="http://plugins.jquery.com/project/mosne_map">jQuery plugins project page</a></li>
@@ -41,7 +50,7 @@
         <li><a href="https://github.com/mosne/mosne_map/issues">Issues</a></li>
         <li><a href="https://github.com/mosne/mosne_map/fork">Fork</a></li>
       </ul>
-      </nav>
+      </nav>';?>
       
     </header>
     
@@ -202,6 +211,9 @@ var cluster_styles = [{
 }];
 
 var marker_icon = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|f6005d|f6005d';
+
+// Styledmaps wizard 
+// http://gmaps-samples-v3.googlecode.com/svn/trunk/styledmaps/wizard/
 
 var stylez = [{
     featureType: "water",
@@ -397,7 +409,13 @@ $("#map_2").mosne_map({
         <h2>Map4: Events</h2>
         
         <div class="pd">
-        zoom level: <span id="zoom">0</span>
+           <div>zoom level: <span id="zoom">0</span></div>
+           <div>total locations: <span id="tot">0</span></div>
+           <ul>
+            <li><a id="reset" href="#">reset zoom (fit to bouds)</a></li>
+            <li><a id="up" href="#">Remove some elements and update map</a></li>
+           </ul>
+           
         </div>
         
         <div id="map_4_list" class="list">
@@ -430,15 +448,18 @@ $("#map_2").mosne_map({
         $("#zoom").html(zoom);
     });
 
-    $("#map_4_list .maplocation").bind('aj_open', function () {
-        alert("call ajax!");
+    $("#map_4_list .maplocation").bind('aj_open', function (e) {
+        $(this).append('&lt;div class=&quot;pd&quot;&gt;do something fun!&lt;/div&gt;');
+        return false;
     });
 
-    $("#reset").click(function () {
+    $("#reset").click(function (e) {
+        e.preventDefault();
         $("#map_4").trigger("bounds");
     });
 
-    $("#up").click(function () {
+    $("#up").click(function (e) {
+        e.preventDefault();
         $("#map_4_list .maplocation:odd").remove();
         $("#map_4").trigger("update");
     });
@@ -500,9 +521,10 @@ defaults = {
     <h2>Download</h2>
     <ul>
       <li>this project is under <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a></li>
-      <li><a href="jquery.mosne.map.js">jquery.mosne.map.js</a></li>
       <li><a href="https://github.com/mosne/mosne_map">this site on github</a></li>
+      <li><a href="jquery.mosne.map.js">jquery.mosne.map.js</a></li>
     </ul>
+    <div id="ugly_out"></div>
     </section>  
     
     
@@ -512,6 +534,8 @@ defaults = {
       <li><a href="http://gmaps-utility-library-dev.googlecode.com/svn/tags/markerclusterer/">markerClusterer</a></li>
       <li><a href="http://gmaps-samples-v3.googlecode.com/svn/trunk/styledmaps/wizard/index.html">Google Maps API Styled Map Wizard</a></li>
       <li><a href="http://itouchmap.com/latlong.html">iTouchmap / latitude and longitude of a point</a></li>
+      <li><a href="http://code.google.com/intl/fr/apis/maps/documentation/javascript/basics.html">Google Maps Javascript API V3</a></li>
+      <li><a href="http://code.google.com/intl/fr/apis/maps/documentation/javascript/reference.html">Google Maps Javascript API V3 Reference</a></li>
     </ul>
     </section>  
     
@@ -527,7 +551,7 @@ defaults = {
   <!--main ends -->
     </div>
     <footer>
-
+    <? echo $nav; echo $bc; ?>
     </footer>
   </div> 
 

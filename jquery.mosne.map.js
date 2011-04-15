@@ -1,12 +1,13 @@
-/*
- * @name Mosne Map Address Plugin for Google Maps v3
- * @version version 0.3
- * @author Mosne http://www.mosne.it/
- * @plugin page http://www.mosne.it/playground/mosne_map/
- * @fileoverview
- * The library creates and manages per-zoom-level clusters for large amounts of
- * markers, manage styles and advanced map settings
- * 
+ /*!
+ * MOSNE MAP / jQuery Plugin v0.5
+ * markerClusterer + Geocoder + Styled Google Maps API v3
+ * http://www.mosne.it/playground/mosne_map/
+ *
+ * Copyright 2011, Paolo Mosne
+ * Licensed under GPL Version 3 licenses.
+ * http://www.gnu.org/licenses/gpl.html
+ *
+ * Date: 2011-03-20 11:19 AM
  */
 
 (function ($) {
@@ -37,7 +38,7 @@
             showzoom: false,                // bind current map zoom level event
             before: function () {},         // before create map callback
             after: function () {},          // after create map callback 
-            afterUpdate: function () {},    // after update map callback
+            afterUpdate: function () {}     // after update map callback
         };
 
         var settings = $.extend({}, defaults, options);

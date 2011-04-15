@@ -78,12 +78,26 @@ a:hover { color: #036; }
 	
 	#container{
 	width: 960px;
-	margin: 60px auto;
+	margin: 1em auto;
 	}
 	
-	header{
-	margin-bottom: 2em;
+	header,footer{
+	padding-bottom: 2em;
+	float: left;
+	width: 100%;
 	}
+	nav.bc ul{
+	margin-bottom: 50px;
+	float: left;
+	width: 100%;
+	}
+	
+	footer{
+	padding-top: 2em;
+	padding-bottom: 6em;
+	border-top: 1px dotted #ccc;
+	}
+	
 	section{
 	float: left;
 	width: 100%;
@@ -123,6 +137,22 @@ a:hover { color: #036; }
 	.pd{
 	padding-left: 10px;
 	padding-bottom: 1
+	}
+	
+	#down{
+	float: right;
+	background: #eee;
+	font-weight: bold;
+	color: #666;
+	font-size: 110%;
+	padding: 8px;
+	border-radius:8px;
+	margin-top: -63px;
+	text-decoration: none;
+	}
+	#down:hover{
+	background:#607890;
+	color: #fff;
 	}	
 	
 	.example{
