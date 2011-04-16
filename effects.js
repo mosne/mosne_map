@@ -28,14 +28,14 @@ $(function () {
         height: 50,
         opt_textSize: 21,
         opt_anchor: [8, 0],
-        opt_textColor: '#222222',
+        opt_textColor: '#222222'
     }, {
         url: 'images/m5.png',
         width: 50,
         height: 50,
         opt_textSize: 21,
         opt_anchor: [8, 0],
-        opt_textColor: '#222222',
+        opt_textColor: '#222222'
     }];
 
     var marker_icon = 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|f6005d|f6005d';
@@ -207,6 +207,7 @@ $(function () {
         showzoom: true,
         trigger: 'aj_open',
         clickedzoom: 14,
+        infobox: false, //dont't use infoWindow
         afterUpdate: counter
     });
     
