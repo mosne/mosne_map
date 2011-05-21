@@ -31,6 +31,7 @@
   afterUpdate : function(){},
   map_opt: {zoom: 6, mapTypeId: google.maps.MapTypeId.ROADMAP}
  };
+     
  var settings = $.extend({}, defaults, options);
  this.each(function(){
  
@@ -77,7 +78,7 @@
 	
   $(settings.elements).each(function(i){
   	
-  	delay = i*500;
+  	delay = i*settings.wait;
   	
   	// create marker
   	var el = $(this);

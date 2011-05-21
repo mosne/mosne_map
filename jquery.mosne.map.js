@@ -86,16 +86,10 @@
             
             var _createMarker = function(el,latLng,markerIcon,m_name,cat){
                      
-                       if (cat){ 
-                       
-                       var marker = new google.maps.Marker({
-                            position: latLng,
-                            icon: settings.cat_style[cat]['icon'],
-                            title: m_name
-                       });
-                        
-                        
-                       }else{
+                       if (cat){
+                        var c_icon = settings.cat_style[cat]['icon'];
+                        if (c_icon){ var markerIcon =  c_icon; }
+                       }
                        
                        var marker = new google.maps.Marker({
                             position: latLng,
@@ -103,8 +97,6 @@
                             title: m_name
                         });
                         
-                        }
-
                         //extend bounds
                         bounds.extend(latLng);
 
