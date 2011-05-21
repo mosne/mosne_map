@@ -118,6 +118,9 @@ a:hover { color: #036; }
 	font-size: 120%;
 	padding-bottom: 1em;
 	}
+	p{
+	margin-bottom: 1em;
+	}
 	
 	h2{
 	font-size: 150%;

@@ -1,5 +1,5 @@
  /*!
- * MOSNE MAP / jQuery Plugin v0.6
+ * MOSNE MAP / jQuery Plugin v0.5
  * markerClusterer + Geocoder + Styled Google Maps API v3
  * http://www.mosne.it/playground/mosne_map/
  *
@@ -35,8 +35,6 @@
             timeout: 100,                   // delay between click and zoom on the single marker
             mode: 'latlng',                 // switch mode
             wait: 500,                      // timeout between geocode requests
-            cat_style: {},                  // costum icons and click zoom level
-            fitbounds: true,                // on|off fit bounds
             showzoom: false,                // bind current map zoom level event
             before: function () {},         // before create map callback
             after: function () {},          // after create map callback 
@@ -81,29 +79,15 @@
                 });
             }
             
-            
             // function create marker
             
-            var _createMarker = function(el,latLng,markerIcon,m_name,cat){
+            var _createMarker = function(el,latLng,markerIcon,m_name){
                      
-                       if (cat){ 
-                       
-                       var marker = new google.maps.Marker({
-                            position: latLng,
-                            icon: settings.cat_style[cat]['icon'],
-                            title: m_name
-                       });
-                        
-                        
-                       }else{
-                       
-                       var marker = new google.maps.Marker({
+                     var marker = new google.maps.Marker({
                             position: latLng,
                             icon: markerIcon,
                             title: m_name
                         });
-                        
-                        }
 
                         //extend bounds
                         bounds.extend(latLng);
@@ -122,7 +106,8 @@
                             }
 
                             el.trigger(settings.trigger);
-                           
+                            console.log(1);
+
                             $(el).parents().find('.active').removeClass('active');
                             $(el).addClass('active');
 
@@ -184,10 +169,8 @@
                                 if (status == google.maps.GeocoderStatus.OK) {
                                     latLng = results[0].geometry.location;
                                     _createMarker(el,latLng,markerIcon,name);
-                                    //fit bounds
-                                    if (settings.fitbounds === true){ 	
-                                      map.fitBounds(bounds); 
-                                    }
+                                    //fit bounds 	
+                                    map.fitBounds(bounds); /**/
 
                                 } else {
                                     $(el).css({
@@ -204,15 +187,14 @@
                         // mode latlng
                         var mkr = el.data();
                         var latLng = new google.maps.LatLng(mkr.lat, mkr.lng);
-                        
-                        _createMarker (el,latLng,markerIcon,mkr.name,mkr.cat);
+                        _createMarker (el,latLng,markerIcon,mkr.name);
 
             }
             
             //end of the elements loop
             });
             
-            if (settings.mode === 'latlng' && settings.fitbounds === true){
+            if (settings.mode === 'latlng'){
             // bounds 
             map.fitBounds(bounds);
             };

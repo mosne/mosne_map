@@ -89,6 +89,7 @@
         <li><a href="#map_2">Map2: Advanced</a> how-to style google maps</li>
         <li><a href="#map_3">Map3: Geocoding</a> use plaint text address for each link</li>
         <li><a href="#map_4">Map4: Events</a> shows how to bind an trigger different events</li>
+        <li><a href="#map_5">Map5: Categories</a> customs  marker icons based on category</li>
     </ul>
     </div>
     
@@ -443,6 +444,9 @@ $("#map_2").mosne_map({
       
       
       <div class="code">
+      
+  
+
       <pre class="js">
     $("#map_4").bind("showzoom", function (e, zoom) {
         $("#zoom").html(zoom);
@@ -474,6 +478,7 @@ $("#map_2").mosne_map({
         showzoom: true,
         trigger: 'aj_open',
         clickedzoom: 14,
+        infobox: false, //do not use infoWindow
         afterUpdate: counter
     });</pre>
       </div>
@@ -485,14 +490,82 @@ $("#map_2").mosne_map({
 </section>  
 
 
+
+  <!-- map1 example -->
+    
+    <div class="clearfix example">
+      <div class="sx">
+        <div id="map_5" class="mapbox"></div>
+      </div>
+      <div class="dx">
+        <h2>Map5: Categories</h2>
+        
+        <div id="map_5_list" class="list">
+    
+          <? 
+           $all=8;
+           
+           $cats = array('red','green','blue','aqua');
+           for ($a=0; $a<$all; $a++){ 
+           
+           $cc = $cats[rand(0,3)];
+           
+           ?>
+        
+          <div class="maplocation" 
+            data-name="Link <? echo $a; ?>"  
+            data-lat="<? echo rand(41,45).".".rand(0,9999999); ?>"
+            data-cat="<? echo $cc ?>"
+            data-lng="<? echo rand(8,16).".".rand(0,9999999); ?>">
+            
+            <h2><a href="#" class="maplink">Link <? echo $a; ?></a></h2>
+              <div class="infobox">
+                <h2>foo <? echo $a; ?></h2>
+                <p><? echo $cc ?></p>
+              </div>
+          </div>
+        
+          <? }  ?>
+        </div>
+      </div>
+      
+      
+      
+      <div class="code">
+      
+       <pre class="html">&lt;div class=&quot;maplocation&quot; data-name=&quot;Link 1&quot;  data-lat=&quot;41.10&quot; data-lng=&quot;13.29&quot; data-cat=&quot;red&quot;&gt;</pre>
+     
+      <pre class="js">var my_cat_style ={
+    red:    { icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=R|cc0000|FFFFFF'},
+    green:  { icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=G|00cc00|333333'},
+    blue:   { icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=B|2222cc|FFFFFF'}, 
+    aqua:   { icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=A|00cccc|333333'}
+    };
+        
+    $("#map_5").mosne_map({
+        elements: '#map_5_list .maplocation',
+        cluster_styles: {
+            zoomOnClick: true,
+            maxZoom: 3,
+            styles: cluster_styles
+        },
+        cat_style: my_cat_style    
+    });</pre>
+      </div>
+      
+    </div>
+
+
+    
+</section>  
+
  <section id="options">
       <h2>Options</h2>
       
       <div class="code">
       <pre class="js">
 defaults = {
-
-            elements: '#list .maplocation', // links selector
+            elements: '#list .maplocation', //links selector
             map_opt: baseconf,              // custom map options object
             clat: 41.895466,                // set the lat default map center
             clng: 12.482324,                // set the lng default map center
@@ -506,10 +579,12 @@ defaults = {
             timeout: 100,                   // delay between click and zoom on the single marker
             mode: 'latlng',                 // switch mode
             wait: 500,                      // timeout between geocode requests
+            cat_style: {},                  // costum icons and click zoom level
+            fitbounds: true,                // on|off fit bounds
             showzoom: false,                // bind current map zoom level event
             before: function () {},         // before create map callback
             after: function () {},          // after create map callback 
-            afterUpdate: function () {},    // after update map callback
+            afterUpdate: function () {}     // after update map callback
         };</pre>
       </div>
       
@@ -519,12 +594,16 @@ defaults = {
     
     <section id="downloads">  
     <h2>Download</h2>
+    <p>this project is under <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a><br/></p>
+    
     <ul>
-      <li>this project is under <a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a></li>
       <li><a href="https://github.com/mosne/mosne_map">this site on github</a></li>
       <li><a href="jquery.mosne.map.js">jquery.mosne.map.js</a></li>
+      <li><a href="http://marijnhaverbeke.nl/uglifyjs?code_url=http://www.mosne.it/playground/mosne_map/jquery.mosne.map.js&download=jquery.mosne.map.min.js">jquery.mosne.map.min.js</a> (UglifyJS minification)</li>
     </ul>
-    <div id="ugly_out"></div>
+    
+    
+    
     </section>  
     
     
@@ -544,6 +623,7 @@ defaults = {
     <ul>
       <li><a href="http://vigetlabs.github.com/jmapping/">Brian Landau's jMapping</a></li>
       <li><a href="http://marcgrabanski.com/articles/jquery-google-maps-tutorial-basics">Marc Grabanski's tutorial</a></li>
+      <li><a href="http://marijnhaverbeke.nl/uglifyjs">UglifyJS JavaScript minification</a></li>
       <li><a href="http://lacab.it">Lacab Hosting</a></li>
     </ul>
     </section>  

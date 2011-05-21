@@ -210,7 +210,24 @@ $(function () {
         infobox: false, //dont't use infoWindow
         afterUpdate: counter
     });
-    
+
+var my_cat_style ={
+    red:    { icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=R|cc0000|FFFFFF'},
+    green:  { icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=G|00cc00|333333'},
+    blue:   { icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=B|2222cc|FFFFFF'}, 
+    aqua:   { icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=A|00cccc|333333'}
+    };
+        
+    $("#map_5").mosne_map({
+        elements: '#map_5_list .maplocation',
+        cluster_styles: {
+            zoomOnClick: true,
+            maxZoom: 3,
+            styles: cluster_styles
+        },
+        cat_style: my_cat_style    
+    });
+
    
     //snipet
     $("pre.js").snippet("javascript", {
