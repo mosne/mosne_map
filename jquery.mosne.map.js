@@ -1,7 +1,9 @@
  /*!
- * MOSNE MAP / jQuery Plugin v0.6
- * markerClusterer + Geocoder + Styled Google Maps API v3
+ * MOSNE MAP / jQuery Plugin v0.7
+ * markerClusterer + InfoBox + Geocoder + Styled Google Maps API v3
  * http://www.mosne.it/playground/mosne_map/
+ *
+ * Require jQuery 1.5+, Google Maps API v3, markerClusterer, InfoBox
  *
  * Copyright 2011, Paolo Mosne
  * Licensed under GPL Version 3 licenses.
@@ -18,7 +20,28 @@
             zoom: 6,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-
+        
+        var s_infobox = {
+			 content: "",
+			 disableAutoPan: false,
+			 maxWidth: 0,
+			 pixelOffset: new google.maps.Size(-145, 5),
+			 zIndex: null,
+			 boxStyle: { 
+			 background: "url('images/infobox_top.png') no-repeat",
+			 opacity: 1,
+			 color:'#000',
+			 padding: '0',
+			 width: "280px"
+			 },
+			 closeBoxMargin: "16px 4px",
+			 closeBoxURL: "images/infobox_close.png",
+			 infoBoxClearance: new google.maps.Size(1, 1),
+			 isHidden: false,
+			 pane: "floatPane",
+			 enableEventPropagation: false
+		};
+        
         defaults = {
 
             elements: '#list .maplocation', //links selector
@@ -29,7 +52,9 @@
             mapstyle: '',                   // mapstyle object
             cluster_styles: {},             // custom cluster icons object
             marker_icon: '',                // custom marker icon url
-            infobox: true,                  // shows infoWindows grabing html from the .infobox element
+            infowindows: true,              // shows infoWindows grabing html from the .infobox element
+            infobox: false,                 // enable custom infoWindows using infobox class
+            infobox_s: s_infobox,           // default color scheme for custom infobox container
             trigger: 'map_open',            // you can set a event trigger for each link/marker
             clickedzoom: 15,                // set the zoom level when you click the single marker
             timeout: 100,                   // delay between click and zoom on the single marker
@@ -58,7 +83,7 @@
             var bounds = new google.maps.LatLngBounds();
             var markerCluster = new MarkerClusterer(map, null, settings.cluster_styles);
             map.setCenter(center);
-
+            
             //apply map style
             if (settings.mapstyle_name != '') {
                 var styledMapOptions = {
@@ -74,14 +99,21 @@
                 var markerIcon = new google.maps.MarkerImage(settings.marker_icon, new google.maps.Size(21, 34));
             }
 
-            // light infowindow 
-            if (settings.infobox) {
+            // init infowindow 
+            if (settings.infowindows) {
                 var infowindow = new google.maps.InfoWindow({
                     maxWidth: 80
                 });
             }
-            
-            
+          
+            // init infobox
+            if (settings.infobox) {
+               var boxText = document.createElement("div");
+               boxText.style.cssText = settings.infobox_s_txt
+		       boxText.innerHTML = "hello world";
+               var m_box = new InfoBox(settings.infobox_s);
+            }
+                        
             // function create marker
             
             var _createMarker = function(el,latLng,markerIcon,m_name,cat){
@@ -100,19 +132,24 @@
                         //extend bounds
                         bounds.extend(latLng);
 
-                        // bind click on map trigger event fill infowindow content on demand 
-                        if (settings.infobox) {
+                        // bind click on map trigger event fill infowindow / infobox content on demand 
+                        if (settings.infowindows || settings.infobox ) {
                             var content = el.find('.infobox').html();
                         }
-                      
+                        
                         google.maps.event.addListener(marker, 'click', function () {
 
-                            if (settings.infobox) {
+                            if (settings.infowindows) {
                                 infowindow.close();
                                 infowindow.setContent(content);
                                 infowindow.open(map, marker);
                             }
-
+                            if (settings.infobox) {
+                                m_box.close();
+                                m_box.setContent(content);
+                                m_box.open(map, marker);
+                            }
+                            
                             el.trigger(settings.trigger);
                            
                             $(el).parents().find('.active').removeClass('active');

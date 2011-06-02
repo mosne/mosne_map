@@ -7,9 +7,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title>MOSNE MAP / jQuery Plugin / markerClusterer + Geocoder + styled Google Maps API v3</title>
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <title>MOSNE MAP / jQuery Plugin / markerClusterer + InfoBox + Geocoder + styled Google Maps API v3</title>
+  <meta name="description" content="A jQuery Plugin with markerClusterer, InfoBox, Geocoder,styled Google Maps,API v3">
+  <meta name="author" content="Mosne">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -33,7 +33,7 @@
     </ul>';
     ?> 
     <h1>MOSNE MAP / jQuery Plugin</h1>
-    <h3>markerClusterer + Geocoder + Styled Google Maps API v3</h3> 
+    <h3>markerClusterer + InfoBox + Geocoder + styled Google Maps API v3</h3> 
     <a id="down" href="#downloads">&#9660; Download</a>
 <? echo $nav =' 
       <nav>
@@ -90,6 +90,7 @@
         <li><a href="#map_3">Map3: Geocoding</a> use plaint text address for each link</li>
         <li><a href="#map_4">Map4: Events</a> shows how to bind an trigger different events</li>
         <li><a href="#map_5">Map5: Categories</a> customs  marker icons based on category</li>
+        <li><a href="#map_6">Map6: InfoBox</a> customs  infobox styles (infobox.js required)</li>
     </ul>
     </div>
     
@@ -114,8 +115,10 @@
             
             <h2><a href="#" class="maplink">Link <? echo $a; ?></a></h2>
               <div class="infobox">
+              
                 <h2>foo <? echo $a; ?></h2>
                 <p>Hello world!</p>
+               
               </div>
           </div>
         
@@ -320,7 +323,6 @@ var mapOptions = {
 
 $("#map_2").mosne_map({
     elements: '#map_2_list .maplocation',
-    infobox: true,
     showzoom: true,
     timeout: 100,
     clat: 41.895466,
@@ -478,7 +480,7 @@ $("#map_2").mosne_map({
         showzoom: true,
         trigger: 'aj_open',
         clickedzoom: 14,
-        infobox: false, //do not use infoWindow
+        infowindows: false, //do not use infoWindow
         afterUpdate: counter
     });</pre>
       </div>
@@ -487,7 +489,7 @@ $("#map_2").mosne_map({
 
 
     
-</section>  
+
 
 
 
@@ -556,6 +558,99 @@ $("#map_2").mosne_map({
     </div>
 
 
+ <!-- map6 custom infoWindows -->
+    
+    <div class="clearfix example">
+      <div class="sx">
+        <div id="map_6" class="mapbox"></div>
+      </div>
+      <div class="dx">
+        <h2>Map6: custom infoWindows</h2>
+        
+        <div id="map_6_list" class="list">
+    
+          <? 
+           $all=8;
+           
+           //$cats = array('today','yesterday','comingsoon');
+           for ($a=0; $a<$all; $a++){ 
+           
+           $cc = 'yesterday'; //$cats[rand(0,2)];
+           
+           ?>
+        
+          <div class="maplocation" 
+            data-name="Link <? echo $a; ?>"  
+            data-lat="<? echo rand(41,45).".".rand(0,9999999); ?>"
+            data-lng="<? echo rand(8,16).".".rand(0,9999999); ?>">
+            
+            <h2><a href="#" class="maplink">Link <? echo $a; ?></a></h2>
+              <div class="infobox">
+              <div class="m_tooltip">
+                <p>this is so <? echo $cc ?>!</p>
+              </div>
+              </div>
+          </div>
+        
+          <? }  ?>
+        </div>
+      </div>
+      
+      
+      
+      <div class="code">
+      
+       <pre class="html">&lt;div class=&quot;infobox&quot;&gt;
+    &lt;div class=&quot;m_tooltip&quot;&gt;
+        &lt;p&gt;this is so yesterday!&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+<pre class="html">
+.m_tooltip{
+	position: absolute;
+	text-align: center;
+	left: 0;
+	top: 0;
+	z-index: -2;
+	color: #FFFFFF;
+    float: left;
+    margin-top: 10px;
+    padding: 10px;
+    width: 260px;
+    border: 1px solid #313436;
+    text-shadow: 0px 0px 3px #000;
+       -moz-border-radius: 5px;  
+    -webkit-border-radius: 5px; 
+            border-radius: 5px; 
+       -moz-box-shadow: 0px 1px 2px #000; 
+    -webkit-box-shadow: 0px 1px 2px #000;
+            box-shadow: 0px 1px 2px #000;
+  	background-color: #313436;
+    background-image: -webkit-linear-gradient(top, #313436, #222526); 
+    background-image:    -moz-linear-gradient(top, #313436, #222526);
+    background-image:     -ms-linear-gradient(top, #313436, #222526); 
+    background-image:      -o-linear-gradient(top, #313436, #222526); 
+    background-image:         linear-gradient(top, #313436, #222526);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#313436', EndColorStr='#222526');
+    }
+</pre>
+     
+      <pre class="js">$("#map_6").mosne_map({
+        elements: '#map_6_list .maplocation',
+        infowindows: false,                     // do not use infoWindow
+        infobox: true,                          // use infobox instead
+        cluster_styles: {
+            zoomOnClick: true,
+            maxZoom: 3,
+            styles: cluster_styles
+        },
+        marker_icon:'images/m_red.png'
+    });</pre>
+      </div>
+      
+    </div>
+
     
 </section>  
 
@@ -573,7 +668,9 @@ defaults = {
             mapstyle: '',                   // mapstyle object
             cluster_styles: {},             // custom cluster icons object
             marker_icon: '',                // custom marker icon url
-            infobox: true,                  // shows infoWindows grabing html from the .infobox element
+            infowindows: true,              // shows infoWindows grabing html from the .infobox element
+            infobox: false,                 // enable custom infoWindows using infobox class
+            infobox_s: s_infobox,           // default color scheme for custom infobox container
             trigger: 'map_open',            // you can set a event trigger for each link/marker
             clickedzoom: 15,                // set the zoom level when you click the single marker
             timeout: 100,                   // delay between click and zoom on the single marker
@@ -610,7 +707,7 @@ defaults = {
     <section id="tools">  
     <h2>Tools</h2>
     <ul>
-      <li><a href="http://gmaps-utility-library-dev.googlecode.com/svn/tags/markerclusterer/">markerClusterer</a></li>
+      <li><a href="http://gmaps-utility-library-dev.googlecode.com/">markerClusterer and InfoBox</a></li>
       <li><a href="http://gmaps-samples-v3.googlecode.com/svn/trunk/styledmaps/wizard/index.html">Google Maps API Styled Map Wizard</a></li>
       <li><a href="http://itouchmap.com/latlong.html">iTouchmap / latitude and longitude of a point</a></li>
       <li><a href="http://code.google.com/intl/fr/apis/maps/documentation/javascript/basics.html">Google Maps Javascript API V3</a></li>
@@ -641,9 +738,10 @@ defaults = {
   <!-- scripts concatenated and minified via ant build script-->
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true&key=ABQIAAAARR0HQxACUc8T7no6lwNbcRRSiXwM92cUDm23D7Ry7WdvUOfXWxRqPjl2PGjDH85KKQEz-_7rsSWQCA"></script>
     <script type="text/javascript" src="MarkerClusterer.js"></script>
-    <script type="text/javascript" src="jquery.mosne.map.js"></script>
+    <script type="text/javascript" src="infobox.js"></script>
+        <script type="text/javascript" src="jquery.mosne.map.js?v=7"></script>
     <script type="text/javascript" src="plugins.js"></script>
-    <script type="text/javascript" src="effects.js"></script>
+    <script type="text/javascript" src="effects.js?v=7"></script>
 
   <!-- end scripts-->
 

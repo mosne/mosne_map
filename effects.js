@@ -147,7 +147,7 @@ $(function () {
 
     $("#map_2").mosne_map({
         elements: '#map_2_list .maplocation',
-        infobox: true,
+        infowindows: true,
         showzoom: true,
         zoom: 6,
         trigger: 'aj_open',
@@ -207,7 +207,7 @@ $(function () {
         showzoom: true,
         trigger: 'aj_open',
         clickedzoom: 14,
-        infobox: false, //dont't use infoWindow
+        infowindows: false, //dont't use infoWindow
         afterUpdate: counter
     });
 
@@ -226,6 +226,19 @@ var my_cat_style ={
             styles: cluster_styles
         },
         cat_style: my_cat_style    
+    });
+    
+    
+     $("#map_6").mosne_map({
+        elements: '#map_6_list .maplocation',
+        infowindows: false,                     //do not use infoWindow
+        infobox: true,                          //  use infobox instead
+        cluster_styles: {
+            zoomOnClick: true,
+            maxZoom: 3,
+            styles: cluster_styles
+        },
+        marker_icon:'images/m_red.png'
     });
 
    
