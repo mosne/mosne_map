@@ -201,6 +201,39 @@ a:hover { color: #036; }
 	background: yellow;
 	}
 	
+	.m_tooltip{
+	position: absolute;
+	text-align: center;
+	left: 0;
+	top: 0;
+	z-index: -2;
+	color: #FFFFFF;
+    float: left;
+    margin-top: 10px;
+    padding: 10px;
+    width: 260px;
+    border: 1px solid #313436;
+    text-shadow: 0px 0px 3px #000;
+       -moz-border-radius: 5px;  
+    -webkit-border-radius: 5px; 
+            border-radius: 5px; 
+       
+       -moz-box-shadow: 0px 1px 2px #000; /* FF3.5+ */
+    -webkit-box-shadow: 0px 1px 2px #000; /* Saf3.0+, Chrome */
+            box-shadow: 0px 1px 2px #000;
+          
+	background-color: #313436;
+    background-image: -webkit-linear-gradient(top, #313436, #222526); /* Chrome 10+, Saf5.1+ */
+    background-image:    -moz-linear-gradient(top, #313436, #222526); /* FF3.6 */
+    background-image:     -ms-linear-gradient(top, #313436, #222526); /* IE10 */
+    background-image:      -o-linear-gradient(top, #313436, #222526); /* Opera 11.10+ */
+    background-image:         linear-gradient(top, #313436, #222526);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#313436', EndColorStr='#222526');
+    }
+	.m_tooltip p{
+	margin-bottom: 0;
+	font-size: 16px;
+	}
 	
 	
 	/*snipet*/
