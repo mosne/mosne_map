@@ -25,14 +25,14 @@
 			 content: "",
 			 disableAutoPan: false,
 			 maxWidth: 0,
-			 pixelOffset: new google.maps.Size(-145, 5),
+			 pixelOffset: new google.maps.Size(-110, 5),
 			 zIndex: null,
 			 boxStyle: { 
-			 background: "url('images/infobox_top.png') no-repeat",
+			 background: "url('images/infobox_top.png') top center no-repeat",
 			 opacity: 1,
 			 color:'#000',
 			 padding: '0',
-			 width: "280px"
+			 width: "220px"
 			 },
 			 closeBoxMargin: "16px 4px",
 			 closeBoxURL: "images/infobox_close.png",
@@ -146,8 +146,11 @@
                             }
                             if (settings.infobox) {
                                 m_box.close();
+                                $(boxText).hide();
                                 m_box.setContent(content);
                                 m_box.open(map, marker);
+                                $(boxText).show("slow");
+                               
                             }
                             
                             el.trigger(settings.trigger);

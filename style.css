@@ -201,6 +201,7 @@ a:hover { color: #036; }
 	background: yellow;
 	}
 	
+	
 	.m_tooltip{
 	position: absolute;
 	text-align: center;
@@ -211,7 +212,7 @@ a:hover { color: #036; }
     float: left;
     margin-top: 10px;
     padding: 10px;
-    width: 260px;
+    width: 200px;
     border: 1px solid #313436;
     text-shadow: 0px 0px 3px #000;
        -moz-border-radius: 5px;  
@@ -222,18 +223,28 @@ a:hover { color: #036; }
     -webkit-box-shadow: 0px 1px 2px #000; /* Saf3.0+, Chrome */
             box-shadow: 0px 1px 2px #000;
           
-	background-color: #313436;
-    background-image: -webkit-linear-gradient(top, #313436, #222526); /* Chrome 10+, Saf5.1+ */
-    background-image:    -moz-linear-gradient(top, #313436, #222526); /* FF3.6 */
-    background-image:     -ms-linear-gradient(top, #313436, #222526); /* IE10 */
-    background-image:      -o-linear-gradient(top, #313436, #222526); /* Opera 11.10+ */
-    background-image:         linear-gradient(top, #313436, #222526);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#313436', EndColorStr='#222526');
+	background-image: -webkit-linear-gradient(top, rgba(31,34,36,.9), rgba(0, 0, 0, 0.7)); 
+    background-image:    -moz-linear-gradient(top, rgba(31,34,36,.9), rgba(0, 0, 0, 0.7)); 
+    background-image:    -moz-linear-gradient(top, rgba(31,34,36,.9), rgba(0, 0, 0, 0.7));
+    background-image:     -ms-linear-gradient(top, rgba(31,34,36,.9), rgba(0, 0, 0, 0.7));
+    background-image:      -o-linear-gradient(top, rgba(31,34,36,.9), rgba(0, 0, 0, 0.7)); 
+    background-image:         linear-gradient(top, rgba(31,34,36,.9), rgba(0, 0, 0, 0.7));
+  
     }
+    .no-rgba .m_tooltip{
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#313436', EndColorStr='#222526');
+    }
+    
+    .no-cssgradients .m_tooltip{
+        background-color: #313436;
+    }
+    	
+
 	.m_tooltip p{
 	margin-bottom: 0;
 	font-size: 16px;
 	}
+	
 	
 	
 	/*snipet*/
