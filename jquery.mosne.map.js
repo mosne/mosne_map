@@ -205,7 +205,7 @@
                     if (settings.mode === 'address') {
 
                         delay = settings.wait;
-
+                        var mkr = el.data();
                         var name = $(this).find(".name").text();
                         var address = $(this).find(".address").text();
                         setTimeout(function () {
@@ -215,7 +215,7 @@
                             }, function (results, status) {
                                 if (status == google.maps.GeocoderStatus.OK) {
                                     latLng = results[0].geometry.location;
-                                    _createMarker(el,latLng,markerIcon,name);
+                                    _createMarker(el,latLng,markerIcon,name,mkr.cat);
                                     //fit bounds
                                     if (settings.fitbounds === true){ 	
                                       map.fitBounds(bounds); 
