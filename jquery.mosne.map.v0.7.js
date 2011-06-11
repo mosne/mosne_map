@@ -1,5 +1,5 @@
  /*!
- * MOSNE MAP / jQuery Plugin v0.8
+ * MOSNE MAP / jQuery Plugin v0.7
  * markerClusterer + InfoBox + Geocoder + Styled Google Maps API v3
  * http://www.mosne.it/playground/mosne_map/
  *
@@ -60,10 +60,8 @@
             timeout: 100,                   // delay between click and zoom on the single marker
             mode: 'latlng',                 // switch mode
             wait: 500,                      // timeout between geocode requests
-            maxtry:10,                      // limit of time to bypass query overlimit
             cat_style: {},                  // costum icons and click zoom level
             fitbounds: true,                // on|off fit bounds
-            defzoom : 20,                    // default zoom level if fitbounds is off
             showzoom: false,                // bind current map zoom level event
             before: function () {},         // before create map callback
             after: function () {},          // after create map callback 
@@ -100,7 +98,7 @@
             if (settings.marker_icon != '') {
                 var markerIcon = new google.maps.MarkerImage(settings.marker_icon, new google.maps.Size(21, 34));
             }
-            
+
             // init infowindow 
             if (settings.infowindows) {
                 var infowindow = new google.maps.InfoWindow({
@@ -177,37 +175,6 @@
                         });
 
                         markerCluster.addMarker(marker);
-                        
-                    };
-                    
-                    var _m_geocode = function (el,geocoder,address,name,cat,j){
-                    
-                         geocoder.geocode({
-                                'address': address
-                            }, function (results, status) {
-                                if (status == google.maps.GeocoderStatus.OK) {
-                                    latLng = results[0].geometry.location;
-                                   
-                                    _createMarker (el,latLng,markerIcon,name,cat);
-                                     if ( settings.fitbounds === true){
-                                     map.fitBounds(bounds);
-                                     }
-                                } else {
-                                     
-                                     if (status==="OVER_QUERY_LIMIT"){
-                                        setTimeout(function(){
-                                        //console.log("trying again "+g_address);
-                                        j++; if (j<= settings.maxtry){
-                                        _m_geocode(el,geocoder,address,name,cat,j);
-                                        }else{ $(el).css({opacity: .35});}
-                                        },settings.wait);
-                                        
-                                     }else if (status==="ZERO_RESULTS"){
-                                        $(el).css({opacity: .35});
-                                     }
-    
-                                }
-                            });
                     }
                     
                     //
@@ -229,24 +196,47 @@
 
                 $(settings.elements).each(function (i) {
 
+
                     // create marker
                     var el = $(this);
+
 
                     //mode geocoding
                     if (settings.mode === 'address') {
 
+                        delay = settings.wait;
                         var mkr = el.data();
                         var name = $(this).find(".name").text();
                         var address = $(this).find(".address").text();
                         setTimeout(function () {
-                            _m_geocode(el,geocoder,address,name,mkr.cat,0);
-                        }, settings.wait*i);
+
+                            geocoder.geocode({
+                                'address': address
+                            }, function (results, status) {
+                                if (status == google.maps.GeocoderStatus.OK) {
+                                    latLng = results[0].geometry.location;
+                                    _createMarker(el,latLng,markerIcon,name,mkr.cat);
+                                    //fit bounds
+                                    if (settings.fitbounds === true){ 	
+                                      map.fitBounds(bounds); 
+                                    }
+
+                                } else {
+                                    $(el).css({
+                                        opacity: .35
+                                    });
+                                }
+                            });
+
+                            //timeout
+                        }, delay);
 
                     } else {
 
                         // mode latlng
                         var mkr = el.data();
                         var latLng = new google.maps.LatLng(mkr.lat, mkr.lng);
+                        
                         _createMarker (el,latLng,markerIcon,mkr.name,mkr.cat);
 
             }
@@ -254,12 +244,11 @@
             //end of the elements loop
             });
             
-            if ( settings.fitbounds === true){
-                map.fitBounds(bounds);
-            }else{
-                map.setZoom(settings.defzoom);
+            if (settings.mode === 'latlng' && settings.fitbounds === true){
+            // bounds 
+            map.fitBounds(bounds);
             };
-            
+
             
             //callbak afterUpdate 
             settings.afterUpdate.apply(map_el);
