@@ -236,7 +236,7 @@ a:hover { color: #036; }
     }
     
     .no-cssgradients .m_tooltip{
-        background-color: #313436;
+        background: #313436;
     }
     	
 
