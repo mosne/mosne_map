@@ -40,10 +40,12 @@
         <ul>
         <li><a href="#setup">Setup</a></li>
         <li><a href="#demos">Demos</a></li>
+        <li><a href="#real">Real life examples</a></li>
         <li><a href="#options">Options</a></li>
         <li><a href="#downloads">Download</a></li>
         <li><a href="#tools">Tools</a></li>
         <li><a href="#thanks">Thanks</a></li>
+          <li><a href="#donate">Donate</a></li>
         <li><a href="http://plugins.jquery.com/project/mosne_map">jQuery plugins project page</a></li>
         <li><a href="https://github.com/mosne/mosne_map">Github project page</a></li>
         <li><a href="https://github.com/mosne/mosne_map/pulls">Requests</a></li>
@@ -79,7 +81,19 @@
       
     </section>  
     
+    <section id="demos">
+    <h2>Real life examples</h2>
     
+    <div class="clearfix example">
+    <ul>
+        <li><a href="http://fotoautomat.fr/category/photocabines/" target="_blank">Fotoautomat France</a></li>
+        <li><a href="http://www.wallacesarthousescotland.com/contacts/" target="_blank">Wallace's arthouse scotland</a></li>
+        <li>Many others coming sooon...</li>
+        <li>twitme yours @mosne</li>
+    </ul>
+    </div>
+    </section>   
+        
     <section id="demos">
     <h2>Demos</h2>
     
@@ -724,6 +738,19 @@ defaults = {
       <li><a href="http://lacab.it">Lacab Hosting</a></li>
     </ul>
     </section>  
+    
+ <section id="donate"> 
+    <h2>Help this project</h2>   
+    
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+</form>
+</section>  
+
     
   <!--main ends -->
     </div>
