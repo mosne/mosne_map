@@ -1,5 +1,5 @@
  /*!
- * MOSNE MAP / jQuery Plugin v0.9
+ * MOSNE MAP / jQuery Plugin v0.8
  * markerClusterer + InfoBox + Geocoder + Styled Google Maps API v3
  * http://www.mosne.it/playground/mosne_map/
  *
@@ -218,8 +218,7 @@
                 markerCluster.clearMarkers();
                 bounds = null;
                 bounds = new google.maps.LatLngBounds();
-                totel = $(settings.elements).length;
-                 
+                
                 // markers loop     
                 var markers = [];
                 var w_delay = 0;
@@ -257,13 +256,6 @@
             
             if ( settings.fitbounds === true){
                 map.fitBounds(bounds);
-                if(totel==1){
-                     map.setZoom(settings.clickedzoom);
-                }
-                if(totel==0){
-                    map.setZoom(settings.defzoom);
-                    map.setCenter(center);
-                }
             }else{
                 map.setZoom(settings.defzoom);
             };

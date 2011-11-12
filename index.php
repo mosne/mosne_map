@@ -81,13 +81,15 @@
       
     </section>  
     
-    <section id="demos">
+    <section id="real">
     <h2>Real life examples</h2>
     
     <div class="clearfix example">
     <ul>
+        <li><a href="http://www.thatscontemporary.com/" target="_blank">that's Contemporary</a></li>
         <li><a href="http://fotoautomat.fr/category/photocabines/" target="_blank">Fotoautomat France</a></li>
         <li><a href="http://www.wallacesarthousescotland.com/contacts/" target="_blank">Wallace's arthouse scotland</a></li>
+        <li><a href="http://www.we-we.fr/about-us/" target="_blank">We-We graphic design</a></li>
         <li>Many others coming sooon...</li>
         <li>twitme yours @mosne</li>
     </ul>
